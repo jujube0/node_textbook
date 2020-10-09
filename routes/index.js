@@ -1,8 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', (req,res) => {
-    res.send('Hello World')
+router.get('/', async (req, res, next) => {
+    try{
+        const users = await users.find({});
+    } catch(err){
+        console.log(err);
+        next(err);
+    }
 });
 
 module.exports = router;

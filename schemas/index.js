@@ -1,3 +1,21 @@
-const mongoose = require('moongose');
+const mongoose = require('mongoose');
+const config = require('../config/key');
+const url = config.mongoURI;
 
-mongoose.connect('mongodb+srv://gyoung:0000@cluster0.kebbe.gcp.mongodb.net/<dbname>?retryWrites=true&w=majority')
+const connect = () => {
+    if(process.env.NODE_ENV != 'production'){
+        mongoose.set('debug', true);
+    }
+}
+
+mongoose.connect(url, {
+    useNewUrlParser: true, useUnifiedTopology : true, useCreateIndex : true, useFindAndModify : false
+})
+    .then(() => console.log("mongoDB connected..."))
+    .catch(err => console.log(err));
+
+mongoose.connection.on('error', error => {
+    console.error()
+})
+
+module.exports = connect;
