@@ -20,4 +20,4 @@ app.use((req,res,next) => {
     res.status(404).send('Not Found');
 });
 
-app.listen(port, () => console.log(`listening on port ${port} ~~~`))
+app.listen(port, () => console.log(`listening on port ${port} ~~~!`))
